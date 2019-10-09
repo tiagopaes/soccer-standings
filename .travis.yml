@@ -6,7 +6,6 @@ cache: npm
 
 script:
   - npm run build
-  - sed -i 's/\/static/.\/static/g' ./dist/index.html
 
 deploy:
  provider: pages
