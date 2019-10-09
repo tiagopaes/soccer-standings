@@ -4,8 +4,8 @@
       <h1>{{competition.name}}</h1>
     </v-row>
     <v-row align="center" justify="center">
-      <v-avatar>
-        <v-img :src="competition.shield" />
+      <v-avatar size="100px">
+        <v-img contain :src="competition.shield" />
       </v-avatar>
     </v-row>
     <div class="my-4"></div>
@@ -32,7 +32,7 @@
               <td>{{ index + 1 }}</td>
               <td>
                 <v-avatar size="36px">
-                  <v-img :src="getTeamShield(item.team)" />
+                  <v-img contain :src="getTeamShield(item.team)" />
                 </v-avatar>
                 {{item.team.name}}
               </td>

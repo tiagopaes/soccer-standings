@@ -1,5 +1,4 @@
 export default {
-  brazilian_league: "Campeonato Brasileiro",
   leagues: "Campeonatos",
   page_not_found: "Página não encontrada",
   standings_table: {
@@ -14,5 +13,4 @@ export default {
     standings_table: "Tabela de classificação",
     wins: "V"
   }
-
-}
+};

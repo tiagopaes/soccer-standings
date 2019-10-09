@@ -14,8 +14,8 @@
               @click="$router.push(competition.webslug)"
             >
               <td>
-                <v-avatar>
-                  <v-img :src="competition.shield" />
+                <v-avatar size="48px">
+                  <v-img contain :src="competition.shield" />
                 </v-avatar>
               </td>
               <td>{{ competition.name }}</td>
