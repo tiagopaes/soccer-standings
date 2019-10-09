@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-row align="center" justify="center">
+    <v-row class="pb-4" align="center" justify="center">
       <h1>{{$t('leagues')}}</h1>
     </v-row>
     <v-row align="center" justify="center">
