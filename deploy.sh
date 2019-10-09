@@ -20,7 +20,7 @@ git commit -m 'deploy'
 # if you are deploying to https://<USERNAME>.github.io
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
 
-# if you are deploying to https://tiagopaes.github.io/to-do-list
+# if you are deploying to https://tiagopaes.github.io/soccer-standings
 git push -f git@github.com:tiagopaes/soccer-standings.git master:gh-pages
 
 cd -
