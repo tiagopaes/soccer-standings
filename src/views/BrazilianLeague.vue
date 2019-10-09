@@ -5,17 +5,13 @@
     </v-row>
     <v-row align="center" justify="center">
       <v-avatar>
-        <v-img
-          src="https://upload.wikimedia.org/wikipedia/pt/4/42/Campeonato_Brasileiro_S%C3%A9rie_A_logo.png"
-        />
+        <v-img :src="competitionShield" />
       </v-avatar>
     </v-row>
     <div class="my-4"></div>
-    <!-- <v-row class="mb-2" align="center" justify="center">
-      <h2>{{$t('standings_table.standings_table')}}</h2>
-    </v-row>-->
     <v-row align="center" justify="center">
-      <v-simple-table>
+      <v-progress-circular indeterminate v-if="loading"></v-progress-circular>
+      <v-simple-table v-if="!loading">
         <template v-slot:default>
           <thead>
             <tr>
@@ -32,22 +28,22 @@
           </thead>
 
           <tbody>
-            <tr class="mb-8" v-for="(team, index) in table" :key="index">
+            <tr class="mb-8" v-for="(item, index) in table" :key="index">
               <td>{{ index + 1 }}</td>
               <td>
-                <v-avatar>
-                  <v-img :src="team.team.crestUrl" />
+                <v-avatar size="36px">
+                  <v-img :src="shields[item.team.id]" />
                 </v-avatar>
-                {{team.team.name}}
+                {{item.team.name}}
               </td>
-              <td class="font-weight-bold">{{ team.points }}</td>
-              <td>{{ team.playedGames }}</td>
-              <td>{{ team.won }}</td>
-              <td>{{ team.lost }}</td>
-              <td>{{ team.draw }}</td>
-              <td>{{ team.goalsFor }}</td>
-              <td>{{ team.goalsAgainst }}</td>
-              <td>{{ team.goalDifference }}</td>
+              <td class="font-weight-bold">{{ item.points }}</td>
+              <td>{{ item.playedGames }}</td>
+              <td>{{ item.won }}</td>
+              <td>{{ item.lost }}</td>
+              <td>{{ item.draw }}</td>
+              <td>{{ item.goalsFor }}</td>
+              <td>{{ item.goalsAgainst }}</td>
+              <td>{{ item.goalDifference }}</td>
             </tr>
           </tbody>
         </template>
@@ -57,47 +53,32 @@
 </template>
 
 <script>
+import ApiService from "@/services/ApiService";
+import { teamShields, competitionShields } from "@/constants";
 export default {
   name: "BrazilianLeague",
   data() {
     return {
-      table: [
-        {
-          position: 1,
-          team: {
-            id: 65,
-            name: "Manchester City FC",
-            crestUrl:
-              "https://upload.wikimedia.org/wikipedia/en/e/eb/Manchester_City_FC_badge.svg"
-          },
-          playedGames: 2,
-          won: 2,
-          draw: 0,
-          lost: 0,
-          points: 6,
-          goalsFor: 8,
-          goalsAgainst: 1,
-          goalDifference: 7
-        },
-        {
-          position: 2,
-          team: {
-            id: 64,
-            name: "Liverpool FC",
-            crestUrl:
-              "http://upload.wikimedia.org/wikipedia/de/0/0a/FC_Liverpool.svg"
-          },
-          playedGames: 2,
-          won: 2,
-          draw: 0,
-          lost: 0,
-          points: 6,
-          goalsFor: 6,
-          goalsAgainst: 0,
-          goalDifference: 6
-        }
-      ]
+      competitionId: 2013,
+      table: [],
+      loading: null
     };
+  },
+  computed: {
+    shields() {
+      return teamShields;
+    },
+    competitionShield() {
+      return competitionShields[this.competitionId];
+    }
+  },
+  created() {
+    this.loading = true;
+    const url = `/competitions/${this.competitionId}/standings?standingType=TOTAL`;
+    ApiService.get(url).then(response => {
+      this.table = response.data.standings[0].table;
+      this.loading = false;
+    });
   }
 };
 </script>

@@ -1,12 +1,9 @@
 <template>
-  <!-- App.vue -->
   <v-app id="app">
-    <!-- <v-navigation-drawer app> -->
-    <!-- -->
-    <!-- </v-navigation-drawer> -->
-
     <v-app-bar clipped-left app>
-      <v-toolbar-title>Soccer Standings</v-toolbar-title>
+      <v-toolbar-title
+        @click="$route.name !== 'home' ? $router.push({ name: 'home'}) : ''"
+      >Soccer Standings</v-toolbar-title>
     </v-app-bar>
 
     <v-content>
