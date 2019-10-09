@@ -7,7 +7,12 @@
       <v-simple-table>
         <template v-slot:default>
           <tbody>
-            <tr v-for="(league, index) in leagues" :key="index" class="league-list-item">
+            <tr
+              v-for="(league, index) in leagues"
+              :key="index"
+              class="league-list-item"
+              @click="$router.push({name: 'brasileirao'})"
+              >
               <td>
                 <v-avatar>
                   <v-img :src="league.avatar" />
