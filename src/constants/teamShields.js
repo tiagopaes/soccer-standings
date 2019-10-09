@@ -1,4 +1,4 @@
-export const teamShields = {
+export default {
   1779: "https://upload.wikimedia.org/wikipedia/pt/b/b4/Corinthians_simbolo.png",
   1783: "https://upload.wikimedia.org/wikipedia/commons/9/93/Flamengo-RJ_%28BRA%29.png",
   1769: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Palmeiras_logo.svg/1024px-Palmeiras_logo.svg.png",
@@ -19,8 +19,4 @@ export const teamShields = {
   1771: "https://upload.wikimedia.org/wikipedia/pt/e/e4/Logo_oficial_do_Cruzeiro.png",
   1775: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Avai_FC_%2805-E%29_-_SC.svg/800px-Avai_FC_%2805-E%29_-_SC.svg.png",
   1772: "https://upload.wikimedia.org/wikipedia/pt/e/e4/Novo_escudo_da_Associa%C3%A7%C3%A3o_Chapecoense_de_Futebol.png"
-};
-
-export const competitionShields = {
-  2013: "https://upload.wikimedia.org/wikipedia/pt/4/42/Campeonato_Brasileiro_S%C3%A9rie_A_logo.png"
 };

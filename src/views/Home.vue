@@ -8,17 +8,17 @@
         <template v-slot:default>
           <tbody>
             <tr
-              v-for="(league, index) in leagues"
+              v-for="(competition, index) in competitions"
               :key="index"
               class="league-list-item"
-              @click="$router.push({name: 'brasileirao'})"
-              >
+              @click="$router.push(competition.webslug)"
+            >
               <td>
                 <v-avatar>
-                  <v-img :src="league.avatar" />
+                  <v-img :src="competition.shield" />
                 </v-avatar>
               </td>
-              <td>{{ league.name }}</td>
+              <td>{{ competition.name }}</td>
             </tr>
           </tbody>
         </template>
@@ -28,19 +28,18 @@
 </template>
 
 <script>
+import { competitions } from "@/constants/index";
+
 export default {
   name: "home",
   components: {},
   data() {
-    return {
-      leagues: [
-        {
-          avatar:
-            "https://upload.wikimedia.org/wikipedia/pt/4/42/Campeonato_Brasileiro_S%C3%A9rie_A_logo.png",
-          name: "Campeonato Brasileiro"
-        }
-      ]
-    };
+    return {};
+  },
+  computed: {
+    competitions() {
+      return Object.values(competitions);
+    }
   }
 };
 </script>

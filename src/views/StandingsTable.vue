@@ -1,11 +1,11 @@
 <template>
   <div>
     <v-row align="center" justify="center">
-      <h1>{{$t('brazilian_league')}}</h1>
+      <h1>{{competition.name}}</h1>
     </v-row>
     <v-row align="center" justify="center">
       <v-avatar>
-        <v-img :src="competitionShield" />
+        <v-img :src="competition.shield" />
       </v-avatar>
     </v-row>
     <div class="my-4"></div>
@@ -32,7 +32,7 @@
               <td>{{ index + 1 }}</td>
               <td>
                 <v-avatar size="36px">
-                  <v-img :src="shields[item.team.id]" />
+                  <v-img :src="getTeamShield(item.team)" />
                 </v-avatar>
                 {{item.team.name}}
               </td>
@@ -54,31 +54,35 @@
 
 <script>
 import ApiService from "@/services/ApiService";
-import { teamShields, competitionShields } from "@/constants";
+import { teamShields } from "@/constants/index";
 export default {
-  name: "BrazilianLeague",
+  name: "StandingsTable",
   data() {
     return {
-      competitionId: 2013,
       table: [],
       loading: null
     };
   },
   computed: {
-    shields() {
-      return teamShields;
-    },
-    competitionShield() {
-      return competitionShields[this.competitionId];
+    competition() {
+      return this.$route.meta.competition;
     }
   },
   created() {
     this.loading = true;
-    const url = `/competitions/${this.competitionId}/standings?standingType=TOTAL`;
+    const url = `/competitions/${this.competition.id}/standings?standingType=TOTAL`;
     ApiService.get(url).then(response => {
       this.table = response.data.standings[0].table;
       this.loading = false;
     });
+  },
+  methods: {
+    getTeamShield(team) {
+      if (team.crestUrl && team.crestUrl !== "") {
+        return team.crestUrl;
+      }
+      return teamShields[team.id];
+    }
   }
 };
 </script>
