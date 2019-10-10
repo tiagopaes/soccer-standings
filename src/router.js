@@ -10,7 +10,7 @@ import { competitions } from "./constants/index";
 Vue.use(Router);
 
 export default new Router({
-  mode: "history",
+  mode: "hash",
   base: process.env.VUE_APP_BASE_URL,
   routes: [
     {
