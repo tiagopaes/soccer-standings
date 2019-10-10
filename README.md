@@ -7,7 +7,21 @@ A website to show the standings tables and stats of the most popular soccer leag
 
 ![](https://github.com/tiagopaes/soccer-standings/blob/master/screenshot.png)
 
+## Technologies used
+- [Vue.js](https://vuejs.org)
+- [Vuetify](https://vuetifyjs.com)
+- [football-data.org](https://www.football-data.org)
+
 ## Project setup
+```
+git clone git@github.com:tiagopaes/soccer-standings.git
+```
+```
+cd soccer-standings
+```
+```
+cp .env.example .env
+```
 ```
 npm install
 ```
