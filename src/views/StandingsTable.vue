@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-row align="center" justify="center">
+    <v-row align="center" justify="center" class="px-2">
       <h1>{{competition.name}}</h1>
     </v-row>
     <v-row align="center" justify="center">
@@ -11,43 +11,46 @@
     <div class="my-4"></div>
     <v-row align="center" justify="center">
       <v-progress-circular indeterminate v-if="loading"></v-progress-circular>
-      <v-simple-table v-if="!loading">
-        <template v-slot:default>
-          <thead>
-            <tr>
-              <td colspan="2">{{$t('standings_table.standings')}}</td>
-              <td>{{$t('standings_table.points')}}</td>
-              <td>{{$t('standings_table.matches')}}</td>
-              <td>{{$t('standings_table.wins')}}</td>
-              <td>{{$t('standings_table.loss')}}</td>
-              <td>{{$t('standings_table.draws')}}</td>
-              <td>{{$t('standings_table.goals_for')}}</td>
-              <td>{{$t('standings_table.goals_against')}}</td>
-              <td>{{$t('standings_table.goal_difference')}}</td>
-            </tr>
-          </thead>
+      <div class="table-wrapper" v-if="!loading">
+        <v-simple-table>
+          <template v-slot:default>
+            <thead>
+              <tr class="font-weight-bold">
+                <td>#</td>
+                <td colspan="3">{{$t('standings_table.standings')}}</td>
+                <td>{{$t('standings_table.points')}}</td>
+                <td>{{$t('standings_table.matches')}}</td>
+                <td>{{$t('standings_table.wins')}}</td>
+                <td>{{$t('standings_table.loss')}}</td>
+                <td>{{$t('standings_table.draws')}}</td>
+                <td>{{$t('standings_table.goals_for')}}</td>
+                <td>{{$t('standings_table.goals_against')}}</td>
+                <td>{{$t('standings_table.goal_difference')}}</td>
+              </tr>
+            </thead>
 
-          <tbody>
-            <tr class="mb-8" v-for="(item, index) in table" :key="index">
-              <td>{{ index + 1 }}</td>
-              <td>
-                <v-avatar size="36px">
-                  <v-img contain :src="getTeamShield(item.team)" />
-                </v-avatar>
-                {{item.team.name}}
-              </td>
-              <td class="font-weight-bold">{{ item.points }}</td>
-              <td>{{ item.playedGames }}</td>
-              <td>{{ item.won }}</td>
-              <td>{{ item.lost }}</td>
-              <td>{{ item.draw }}</td>
-              <td>{{ item.goalsFor }}</td>
-              <td>{{ item.goalsAgainst }}</td>
-              <td>{{ item.goalDifference }}</td>
-            </tr>
-          </tbody>
-        </template>
-      </v-simple-table>
+            <tbody>
+              <tr class="mb-8" v-for="(item, index) in table" :key="index">
+                <td>{{ item.position }}</td>
+                <td>
+                  <v-avatar size="36px">
+                    <v-img contain :src="getTeamShield(item.team)" />
+                  </v-avatar>
+                </td>
+                <td colspan="2">{{item.team.name}}</td>
+                <td class="font-weight-bold">{{ item.points }}</td>
+                <td>{{ item.playedGames }}</td>
+                <td>{{ item.won }}</td>
+                <td>{{ item.lost }}</td>
+                <td>{{ item.draw }}</td>
+                <td>{{ item.goalsFor }}</td>
+                <td>{{ item.goalsAgainst }}</td>
+                <td>{{ item.goalDifference }}</td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+      </div>
     </v-row>
   </div>
 </template>
@@ -86,3 +89,9 @@ export default {
   }
 };
 </script>
+
+<style lang="css" scoped>
+.table-wrapper {
+  overflow-x: auto;
+}
+</style>
