@@ -10,5 +10,6 @@ module.exports = {
       localeDir: 'locales',
       enableInSFC: false
     }
-  }
+  },
+  publicPath: process.env.VUE_APP_BASE_URL
 }
