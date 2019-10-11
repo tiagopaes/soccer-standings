@@ -17,3 +17,7 @@ deploy:
  local_dir: dist
  on:
    branch: master
+
+branches:
+  only:
+  - master
