@@ -7,7 +7,7 @@ A website to show the standings tables and stats of the most popular soccer leag
 
 ![](https://github.com/tiagopaes/soccer-standings/blob/master/screenshot.png)
 
-## Technologies used
+## Technologies
 - [Vue.js](https://vuejs.org)
 - [Vuetify](https://vuetifyjs.com)
 - [football-data.org](https://www.football-data.org)
