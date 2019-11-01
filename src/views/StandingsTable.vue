@@ -50,6 +50,31 @@
             </tbody>
           </template>
         </v-simple-table>
+
+        <span class="font-weight-bold title">{{$t('top_scorers.title')}}</span>
+        <v-simple-table>
+          <thead>
+            <tr class="font-weight-bold">
+              <td>{{$t('top_scorers.time')}}</td>
+              <td></td>
+              <td>{{$t('top_scorers.player')}}</td>
+              <td colspan="2">{{$t('top_scorers.goals')}}</td>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr class="mb-8" v-for="(item, index) in scorers" :key="index">
+              <td>
+                <v-avatar size="36px">
+                  <v-img contain :src="getTeamShield(item.team)" />
+                </v-avatar>
+              </td>
+              <td>{{ item.team.name }}</td>
+              <td colspan="2">{{item.player.name}}</td>
+              <td class="font-weight-bold">{{ item.numberOfGoals }}</td>
+            </tr>
+          </tbody>
+        </v-simple-table>
       </div>
     </v-row>
   </div>
@@ -63,7 +88,8 @@ export default {
   data() {
     return {
       table: [],
-      loading: null
+      loading: null,
+      scorers: []
     };
   },
   computed: {
@@ -76,6 +102,11 @@ export default {
     const url = `/competitions/${this.competition.id}/standings?standingType=TOTAL`;
     ApiService.get(url).then(response => {
       this.table = response.data.standings[0].table;
+      this.loading = false;
+    });
+    const urlScorers = `/competitions/${this.competition.id}/scorers`;
+    ApiService.get(urlScorers).then(response => {
+      this.scorers = response.data.scorers;
       this.loading = false;
     });
   },
@@ -93,5 +124,8 @@ export default {
 <style lang="css" scoped>
 .table-wrapper {
   overflow-x: auto;
+}
+.title {
+  line-height: 65px;
 }
 </style>

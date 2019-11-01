@@ -11,6 +11,12 @@ export default {
     points: "Pts",
     standings: "Classificação",
     standings_table: "Tabela de classificação",
-    wins: "V"
+    wins: "V",
+  },
+  top_scorers: {
+    title: "Principais artilheiros",
+    time: "Time",
+    player: "Jogador",
+    goals: "Gols"
   }
 };
